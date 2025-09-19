@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 
 import {NFCComponent} from './Components/nfc'
@@ -23,9 +22,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 function App() {
-  // @ts-ignore
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <NFCComponent />

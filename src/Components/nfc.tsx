@@ -1,6 +1,9 @@
+import { useState } from "react";
+
 
 export function NFCComponent() {
 
+  const [text, setText] = useState("")
   async function onScanClick() {
 
     console.log("User clicked scan button");
@@ -19,6 +22,7 @@ export function NFCComponent() {
       ndef.addEventListener("reading", ({ message, serialNumber }) => {
         console.log(`> Serial Number: ${serialNumber}`);
         console.log(`> Records: (${message.records.length})`);
+        setText(`Serial Number: ${serialNumber}`)
       });
     } catch (error) {
       console.log("Argh! " + error);
@@ -43,6 +47,7 @@ export function NFCComponent() {
       <h1>NFC Demo</h1>
       <button id="scanButton" onClick={onScanClick}>Scan NFC Tag</button>
       <button id="writeButton" onClick={onWriteClick}>Write to NFC Tag</button>
+      <p>TEXT ON TAG: {text}</p>
     </div>
   );
 }
