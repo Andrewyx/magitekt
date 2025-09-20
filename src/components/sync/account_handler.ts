@@ -12,7 +12,7 @@ interface AccountUpdate {
 export class AccountHandler {
     public static readonly ACCOUNTS_PATH = "accounts";
 
-    readonly databaseRef: DatabaseReference
+    private readonly databaseRef: DatabaseReference
     public constructor(databaseRef: DatabaseReference) {
         this.databaseRef = databaseRef;
     }

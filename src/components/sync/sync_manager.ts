@@ -1,7 +1,8 @@
 import { initializeApp, type FirebaseApp } from "firebase/app";
 import { getDatabase, type Database, type DatabaseReference, ref } from "firebase/database";
-import { BoardHandler } from "./board_handler";
+// import { BoardHandler } from "./board_handler";
 import { AccountHandler } from "./account_handler";
+import { Account } from "./account";
 
 export class SyncManager {
     private readonly firebaseConfig = {
@@ -14,17 +15,22 @@ export class SyncManager {
     };
     private app: FirebaseApp;
     private database: Database;
-    private gameInstanceRef: DatabaseReference;
-    private boardHandler: BoardHandler;
+    // private gameInstanceRef: DatabaseReference;
+    // private boardHandler: BoardHandler;
     private accountHandler: AccountHandler;
     private accountsRef: DatabaseReference;
 
     public constructor() {
         this.app = initializeApp(this.firebaseConfig);
         this.database = getDatabase(this.app);
-        this.gameInstanceRef = ref(this.database, BoardHandler.GAME_INSTANCE_PATH);
+        // this.gameInstanceRef = ref(this.database, BoardHandler.GAME_INSTANCE_PATH);
         this.accountsRef = ref(this.database, AccountHandler.ACCOUNTS_PATH);
-        this.boardHandler = new BoardHandler(this.gameInstanceRef);
+        // this.boardHandler = new BoardHandler(this.gameInstanceRef);
         this.accountHandler = new AccountHandler(this.accountsRef);
+        let account = new Account();
+        account.deckIDs = ["test_deck1", "test_deck2"]
+        account.uid = "test_account"
+        this.accountHandler.setAccount(account);
+        console.log("Created new account");
     }
 }

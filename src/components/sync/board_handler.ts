@@ -6,7 +6,7 @@ import { type DatabaseReference, update } from "firebase/database";
 export class BoardHandler {
     public static readonly GAME_INSTANCE_PATH = "game_instances";
 
-    readonly databaseRef: DatabaseReference
+    private readonly databaseRef: DatabaseReference
     public constructor(databaseRef: DatabaseReference) {
         this.databaseRef = databaseRef;
     }

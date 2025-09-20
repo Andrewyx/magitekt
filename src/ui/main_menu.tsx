@@ -1,5 +1,8 @@
+import { SyncManager } from "../components/sync/sync_manager"
 
 export function MainMenu() {
+    // @ts-ignore
+    let syncManager = new SyncManager();
     return(
         <div>
             <h1>Magitek</h1>
