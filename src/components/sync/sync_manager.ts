@@ -14,15 +14,17 @@ export class SyncManager {
     };
     private app: FirebaseApp;
     private database: Database;
-    private readonly rootRef: DatabaseReference;
+    private gameInstanceRef: DatabaseReference;
     private boardHandler: BoardHandler;
     private accountHandler: AccountHandler;
+    private accountsRef: DatabaseReference;
 
     public constructor() {
         this.app = initializeApp(this.firebaseConfig);
         this.database = getDatabase(this.app);
-        this.rootRef = ref(this.database);
-        this.boardHandler = new BoardHandler(this.rootRef);
-        this.accountHandler = new AccountHandler(this.rootRef);
+        this.gameInstanceRef = ref(this.database, BoardHandler.GAME_INSTANCE_PATH);
+        this.accountsRef = ref(this.database, AccountHandler.ACCOUNTS_PATH);
+        this.boardHandler = new BoardHandler(this.gameInstanceRef);
+        this.accountHandler = new AccountHandler(this.accountsRef);
     }
 }
