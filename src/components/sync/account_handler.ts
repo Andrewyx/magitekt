@@ -1,4 +1,5 @@
 import { type DatabaseReference, update } from "firebase/database";
+import { Account } from "./account";
 
 /**
  * This class handles the managment of Accounts and Clients across the database
@@ -11,19 +12,19 @@ export class AccountHandler {
         this.databaseRef = databaseRef;
     }
 
-    public getAccount(): Account {
-        return { id:"" };
+    public getAccountByUID(uid: string): Account {
+        return new Account();
     }
 
-    public addAccount():  {
-
-    }
-
-    public editAccount() {
+    public addAccount(newAccount: Account)  {
 
     }
 
-    public deleteAccount() {
+    public editAccount(newAccount: Account) {
+
+    }
+
+    public deleteAccount(account: Account) {
 
     }
 }
